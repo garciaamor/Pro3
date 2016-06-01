@@ -5,6 +5,7 @@
  */
 
 package proyecto3eva;
+
 import metodos.MetodosMySQL;
 /**
  *
@@ -15,9 +16,12 @@ public class JFrame extends javax.swing.JFrame {
     /**
      * Creates new form JFrame
      */
+   public static int RES;
+    public static int CONTADORA;
+    public static int CONTADORB;
     public JFrame() {
         initComponents();
-        preg1();
+        preg();
     }
 
     /**
@@ -34,6 +38,10 @@ public class JFrame extends javax.swing.JFrame {
         lRespuestaA = new javax.swing.JLabel();
         lRespuestaB = new javax.swing.JLabel();
         lRespuestaC = new javax.swing.JLabel();
+        bA = new javax.swing.JButton();
+        bB = new javax.swing.JButton();
+        bC = new javax.swing.JButton();
+        bsiguiente = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -46,21 +54,56 @@ public class JFrame extends javax.swing.JFrame {
 
         lRespuestaC.setText("jLabel1");
 
+        bA.setText("A");
+        bA.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bAActionPerformed(evt);
+            }
+        });
+
+        bB.setText("B");
+        bB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bBActionPerformed(evt);
+            }
+        });
+
+        bC.setText("C");
+        bC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bCActionPerformed(evt);
+            }
+        });
+
+        bsiguiente.setText("Siguiente");
+        bsiguiente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bsiguienteActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(62, 62, 62)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lRespuestaA, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
-                            .addComponent(lRespuestaB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lRespuestaC, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(lPregunta, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(bsiguiente)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(62, 62, 62)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(lRespuestaA, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
+                                .addComponent(lRespuestaB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lRespuestaC, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(bA)
+                                .addComponent(bB)
+                                .addComponent(bC)))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(lPregunta, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(27, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -69,12 +112,20 @@ public class JFrame extends javax.swing.JFrame {
                 .addGap(42, 42, 42)
                 .addComponent(lPregunta, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(lRespuestaA)
-                .addGap(35, 35, 35)
-                .addComponent(lRespuestaB)
-                .addGap(34, 34, 34)
-                .addComponent(lRespuestaC)
-                .addContainerGap(73, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lRespuestaA)
+                    .addComponent(bA))
+                .addGap(26, 26, 26)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lRespuestaB)
+                    .addComponent(bB))
+                .addGap(29, 29, 29)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lRespuestaC)
+                    .addComponent(bC))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                .addComponent(bsiguiente)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -90,6 +141,28 @@ public class JFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void bAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAActionPerformed
+        RES=1;
+        desarrollo();
+        bA.setEnabled(false);
+    }//GEN-LAST:event_bAActionPerformed
+
+    private void bBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBActionPerformed
+        RES=2;
+        desarrollo();
+        bB.setEnabled(false);
+    }//GEN-LAST:event_bBActionPerformed
+
+    private void bCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCActionPerformed
+        RES=3;
+        desarrollo();
+        bC.setEnabled(false);
+    }//GEN-LAST:event_bCActionPerformed
+
+    private void bsiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bsiguienteActionPerformed
+        recuento();
+    }//GEN-LAST:event_bsiguienteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -127,6 +200,10 @@ public class JFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bA;
+    private javax.swing.JButton bB;
+    private javax.swing.JButton bC;
+    private javax.swing.JButton bsiguiente;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lPregunta;
     private javax.swing.JLabel lRespuestaA;
@@ -138,19 +215,36 @@ public void pregunta(){
     
     lPregunta.setText("");
 }
-public void preg1(){
-    MetodosMySQL lib = new MetodosMySQL();
+public void preg(){
+    /*MetodosMySQL lib = new MetodosMySQL();
     lib.Conectar("jdbc:mysql://10.0.0.254/jgarciaamor","jgarciaamor","jgarciaamor");
     String preg=lib.consultaDatos("Peliculas WHERE id=10",2,"Titulo");
     String cod=lib.consultaDatos("Peliculas WHERE id=10",2,"CODAC1");
     String a=lib.consultaDatos("Actores WHERE CODAC=1",2,"Nombre");
     String b=lib.consultaDatos("Actores WHERE CODAC=2",2,"Nombre");
     String c=lib.consultaDatos("Actores WHERE CODAC=3",2,"Nombre");
-    System.out.println(cod);
-    lPregunta.setText("Que actor protagoniza "+preg);
-    lRespuestaA.setText(a);
-    lRespuestaB.setText(b);
-    lRespuestaC.setText(c);
-    
+    System.out.println(cod);*/
+    lPregunta.setText("Que actor protagoniza ");//+preg);
+    lRespuestaA.setText("a");//("a)"+a);
+    lRespuestaB.setText("b");//("b)"+b);
+    lRespuestaC.setText("c");//("c)"+c);
 }
+public void desarrollo(){
+    switch(RES){
+        case 1: CONTADORA++;
+            break;
+        case 2: CONTADORB++;
+            break;
+        case 3: CONTADORB++;
+            break;
+    }
+}
+public void recuento(){
+    Resultado r=new Resultado();
+    r.setVisible(true);
+        
+    r.aciertos.setText("Aciertos: "+Integer.toString(CONTADORA));
+    r.fallos.setText("Fallos: "+Integer.toString(CONTADORB));
+}
+
 }
