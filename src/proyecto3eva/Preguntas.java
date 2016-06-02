@@ -20,6 +20,10 @@ MetodosMySQL lib = new MetodosMySQL();
     protected static int CONTADORA;
     protected static int CONTADORB;
     protected  String USUARIO;
+    private String a="";
+    private String b="";
+    private String c="";
+    private String codAc;
     public Preguntas() {
         initComponents();
         pregPel();
@@ -217,25 +221,13 @@ public void pregunta(){
     lPregunta.setText("");
 }
 public void pregPel(){
-    String a="";
-    String b="";
-    String c="";
-    int resAleatorioA=0;
+    
     
     lib.Conectar("jdbc:mysql://10.0.0.254/jgarciaamor","jgarciaamor","jgarciaamor");
     String preg=lib.consultaDatos("Peliculas WHERE id=10",2,"Titulo");
-    String codAc=lib.consultaDatos("Peliculas WHERE id=10",2,"CODAC1");
+     codAc=lib.consultaDatos("Peliculas WHERE id=10",2,"CODAC1");
     
-        
-    switch(resAleatorioA){
-        case 1:  a=lib.consultaDatos("Actores WHERE CODAC='"+codAc+"'",2,"Nombre");
-        break;
-        case 2:  a=lib.consultaDatos("ActoresB WHERE CODAC='B2'",2,"Nombre");
-            break;
-        case 3:  a=lib.consultaDatos("ActoresB WHERE CODAC='B3'",2,"Nombre");
-            break;                    
-    }
-    
+     
     
     System.out.println(codAc);
     lPregunta.setText("Que actor protagoniza "+preg);
@@ -253,6 +245,39 @@ public void desarrollo(){
         case 3: CONTADORB++;
             break;
     }
+}
+public void respuestas(){
+    int resAleatorioA=0;
+     int resAleatorioB=0;
+     int resAleatorioC=0;
+    resAleatorioA = (int)(Math.random() * 3)+1;
+     resAleatorioB = (int)(Math.random() * 3)+1;
+     resAleatorioC = (int)(Math.random() * 3)+1;
+    switch(resAleatorioA){
+        case 1:  a=lib.consultaDatos("Actores WHERE CODAC='"+codAc+"'",2,"Nombre");
+        break;
+        case 2:  a=lib.consultaDatos("ActoresB WHERE CODAC='B2'",2,"Nombre");
+            break;
+        case 3:  a=lib.consultaDatos("ActoresB WHERE CODAC='B3'",2,"Nombre");
+            break;                    
+    }
+    switch(resAleatorioB){
+        case 1:  b=lib.consultaDatos("Actores WHERE CODAC='"+codAc+"'",2,"Nombre");
+        break;
+        case 2:  b=lib.consultaDatos("ActoresB WHERE CODAC='B2'",2,"Nombre");
+            break;
+        case 3:  b=lib.consultaDatos("ActoresB WHERE CODAC='B3'",2,"Nombre");
+            break;                    
+    }
+    switch(resAleatorioC){
+        case 1:  c=lib.consultaDatos("Actores WHERE CODAC='"+codAc+"'",2,"Nombre");
+        break;
+        case 2:  c=lib.consultaDatos("ActoresB WHERE CODAC='B2'",2,"Nombre");
+            break;
+        case 3:  c=lib.consultaDatos("ActoresB WHERE CODAC='B3'",2,"Nombre");
+            break;                    
+    }
+    
 }
 public void recuento(){
     Resultado r=new Resultado();
