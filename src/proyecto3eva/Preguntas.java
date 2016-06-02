@@ -22,7 +22,7 @@ MetodosMySQL lib = new MetodosMySQL();
     protected  String USUARIO;
     public Preguntas() {
         initComponents();
-        preg();
+        pregPel();
     }
 
     /**
@@ -216,15 +216,28 @@ public void pregunta(){
     
     lPregunta.setText("");
 }
-public void preg(){
+public void pregPel(){
+    String a="";
+    String b="";
+    String c="";
+    int resAleatorioA=0;
     
     lib.Conectar("jdbc:mysql://10.0.0.254/jgarciaamor","jgarciaamor","jgarciaamor");
     String preg=lib.consultaDatos("Peliculas WHERE id=10",2,"Titulo");
-    String cod=lib.consultaDatos("Peliculas WHERE id=10",2,"CODAC1");
-    String a=lib.consultaDatos("Actores WHERE CODAC='A1'",2,"Nombre");
-    String b=lib.consultaDatos("ActoresB WHERE CODAC='B2'",2,"Nombre");
-    String c=lib.consultaDatos("ActoresB WHERE CODAC='B3'",2,"Nombre");
-    System.out.println(cod);
+    String codAc=lib.consultaDatos("Peliculas WHERE id=10",2,"CODAC1");
+    
+        
+    switch(resAleatorioA){
+        case 1:  a=lib.consultaDatos("Actores WHERE CODAC='"+codAc+"'",2,"Nombre");
+        break;
+        case 2:  a=lib.consultaDatos("ActoresB WHERE CODAC='B2'",2,"Nombre");
+            break;
+        case 3:  a=lib.consultaDatos("ActoresB WHERE CODAC='B3'",2,"Nombre");
+            break;                    
+    }
+    
+    
+    System.out.println(codAc);
     lPregunta.setText("Que actor protagoniza "+preg);
     lRespuestaA.setText("a)"+a);
     lRespuestaB.setText("b)"+b);
