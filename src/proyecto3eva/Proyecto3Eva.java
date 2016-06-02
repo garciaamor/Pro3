@@ -17,7 +17,8 @@ public class Proyecto3Eva {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        JFrame obx = new JFrame();
+        Usuario obx = new Usuario();
+        
         obx.setVisible(true);
     }
     

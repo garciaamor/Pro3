@@ -11,15 +11,16 @@ import metodos.MetodosMySQL;
  *
  * @author mmoureperez
  */
-public class JFrame extends javax.swing.JFrame {
-
+public class Preguntas extends javax.swing.JFrame {
+MetodosMySQL lib = new MetodosMySQL();
     /**
      * Creates new form JFrame
      */
-   public static int RES;
-    public static int CONTADORA;
-    public static int CONTADORB;
-    public JFrame() {
+    protected static int RES;
+    protected static int CONTADORA;
+    protected static int CONTADORB;
+    protected  String USUARIO;
+    public Preguntas() {
         initComponents();
         preg();
     }
@@ -181,20 +182,20 @@ public class JFrame extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Preguntas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Preguntas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Preguntas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Preguntas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new JFrame().setVisible(true);
+                new Preguntas().setVisible(true);
             }
         });
     }
@@ -216,18 +217,19 @@ public void pregunta(){
     lPregunta.setText("");
 }
 public void preg(){
-    /*MetodosMySQL lib = new MetodosMySQL();
+    
     lib.Conectar("jdbc:mysql://10.0.0.254/jgarciaamor","jgarciaamor","jgarciaamor");
     String preg=lib.consultaDatos("Peliculas WHERE id=10",2,"Titulo");
     String cod=lib.consultaDatos("Peliculas WHERE id=10",2,"CODAC1");
-    String a=lib.consultaDatos("Actores WHERE CODAC=1",2,"Nombre");
-    String b=lib.consultaDatos("Actores WHERE CODAC=2",2,"Nombre");
-    String c=lib.consultaDatos("Actores WHERE CODAC=3",2,"Nombre");
-    System.out.println(cod);*/
-    lPregunta.setText("Que actor protagoniza ");//+preg);
-    lRespuestaA.setText("a");//("a)"+a);
-    lRespuestaB.setText("b");//("b)"+b);
-    lRespuestaC.setText("c");//("c)"+c);
+    String a=lib.consultaDatos("Actores WHERE CODAC='A1'",2,"Nombre");
+    String b=lib.consultaDatos("ActoresB WHERE CODAC='B2'",2,"Nombre");
+    String c=lib.consultaDatos("ActoresB WHERE CODAC='B3'",2,"Nombre");
+    System.out.println(cod);
+    lPregunta.setText("Que actor protagoniza "+preg);
+    lRespuestaA.setText("a)"+a);
+    lRespuestaB.setText("b)"+b);
+    lRespuestaC.setText("c)"+c);
+    lib.desconectar();
 }
 public void desarrollo(){
     switch(RES){
@@ -241,10 +243,18 @@ public void desarrollo(){
 }
 public void recuento(){
     Resultado r=new Resultado();
+    Usuario u= new Usuario();
     r.setVisible(true);
-        
+      
     r.aciertos.setText("Aciertos: "+Integer.toString(CONTADORA));
     r.fallos.setText("Fallos: "+Integer.toString(CONTADORB));
+    lib.Conectar("jdbc:mysql://10.0.0.254/jgarciaamor","jgarciaamor","jgarciaamor");
+    String id=lib.consultaDatos("Usuarios WHERE Nombre='"+USUARIO+"'",2,"Id");
+    System.out.println("***"+id);
+    System.out.println(USUARIO);
+    lib.actualizar("Usuarios",id, "Puntuacion", Integer.toString(CONTADORA));
+    lib.desconectar();
+    
 }
 
 }
