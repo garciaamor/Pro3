@@ -97,8 +97,8 @@ public class Usuario extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
        
        met.Conectar("jdbc:mysql://10.0.0.254/jgarciaamor","jgarciaamor","jgarciaamor");
-       met.insertar("Usuarios","Nombre,Puntuacion","'"+tUsuario.getText()+"',0");
-       met.desconectar();
+       //met.insertar("Usuarios","Nombre,Puntuacion","'"+tUsuario.getText()+"',0");
+       //met.desconectar();
        
        Preguntas obx = new Preguntas();
        obx.setVisible(true);
