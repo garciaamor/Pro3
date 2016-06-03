@@ -12,7 +12,7 @@ import metodos.MetodosMySQL;
  */
 public class Usuario extends javax.swing.JFrame {
     MetodosMySQL met = new MetodosMySQL();
-    Preguntas obx = new Preguntas();
+    
     
     /**
      * Creates new form Usuario
@@ -100,6 +100,7 @@ public class Usuario extends javax.swing.JFrame {
        met.insertar("Usuarios","Nombre,Puntuacion","'"+tUsuario.getText()+"',0");
        met.desconectar();
        
+       Preguntas obx = new Preguntas();
        obx.setVisible(true);
        obx.USUARIO=tUsuario.getText();
        setVisible(false);

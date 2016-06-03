@@ -6,6 +6,7 @@
 
 package proyecto3eva;
 
+import java.util.ArrayList;
 import metodos.MetodosMySQL;
 /**
  *
@@ -13,6 +14,8 @@ import metodos.MetodosMySQL;
  */
 public class Preguntas extends javax.swing.JFrame {
 MetodosMySQL lib = new MetodosMySQL();
+ArrayList respuestas= new ArrayList();
+ArrayList actoresFalsos= new ArrayList();
     /**
      * Creates new form JFrame
      */
@@ -20,10 +23,10 @@ MetodosMySQL lib = new MetodosMySQL();
     protected static int CONTADORA;
     protected static int CONTADORB;
     protected  String USUARIO;
-    private String a="";
-    private String b="";
-    private String c="";
-    private String codAc;
+    private String a="1";
+    private String b="2";
+    private String c="3";
+    
     public Preguntas() {
         initComponents();
         pregPel();
@@ -92,9 +95,9 @@ MetodosMySQL lib = new MetodosMySQL();
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(bsiguiente)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(bsiguiente)
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addGap(62, 62, 62)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -105,18 +108,19 @@ MetodosMySQL lib = new MetodosMySQL();
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(bA)
                                 .addComponent(bB)
-                                .addComponent(bC)))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(lPregunta, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(bC))
+                            .addGap(93, 93, 93)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(lPregunta, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(27, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(42, 42, 42)
+                .addGap(25, 25, 25)
                 .addComponent(lPregunta, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(35, 35, 35)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lRespuestaA)
                     .addComponent(bA))
@@ -215,26 +219,23 @@ MetodosMySQL lib = new MetodosMySQL();
     private javax.swing.JLabel lRespuestaB;
     private javax.swing.JLabel lRespuestaC;
     // End of variables declaration//GEN-END:variables
-public void pregunta(){
-    
-    
-    lPregunta.setText("");
-}
+
 public void pregPel(){
     
     
     lib.Conectar("jdbc:mysql://10.0.0.254/jgarciaamor","jgarciaamor","jgarciaamor");
     String preg=lib.consultaDatos("Peliculas WHERE id=10",2,"Titulo");
-     codAc=lib.consultaDatos("Peliculas WHERE id=10",2,"CODAC1");
-    
-     
-    
-    System.out.println(codAc);
+    String codAc=lib.consultaDatos("Peliculas WHERE id=10",2,"CODAC1");
+    lib.desconectar();
+   respuestasAleatorias(codAc); 
+               
     lPregunta.setText("Que actor protagoniza "+preg);
     lRespuestaA.setText("a)"+a);
     lRespuestaB.setText("b)"+b);
     lRespuestaC.setText("c)"+c);
     lib.desconectar();
+    respuestas.clear();
+    actoresFalsos.clear();
 }
 public void desarrollo(){
     switch(RES){
@@ -246,39 +247,63 @@ public void desarrollo(){
             break;
     }
 }
-public void respuestas(){
-    int resAleatorioA=0;
-     int resAleatorioB=0;
-     int resAleatorioC=0;
-    resAleatorioA = (int)(Math.random() * 3)+1;
-     resAleatorioB = (int)(Math.random() * 3)+1;
-     resAleatorioC = (int)(Math.random() * 3)+1;
-    switch(resAleatorioA){
-        case 1:  a=lib.consultaDatos("Actores WHERE CODAC='"+codAc+"'",2,"Nombre");
-        break;
-        case 2:  a=lib.consultaDatos("ActoresB WHERE CODAC='B2'",2,"Nombre");
-            break;
-        case 3:  a=lib.consultaDatos("ActoresB WHERE CODAC='B3'",2,"Nombre");
-            break;                    
-    }
-    switch(resAleatorioB){
-        case 1:  b=lib.consultaDatos("Actores WHERE CODAC='"+codAc+"'",2,"Nombre");
-        break;
-        case 2:  b=lib.consultaDatos("ActoresB WHERE CODAC='B2'",2,"Nombre");
-            break;
-        case 3:  b=lib.consultaDatos("ActoresB WHERE CODAC='B3'",2,"Nombre");
-            break;                    
-    }
-    switch(resAleatorioC){
-        case 1:  c=lib.consultaDatos("Actores WHERE CODAC='"+codAc+"'",2,"Nombre");
-        break;
-        case 2:  c=lib.consultaDatos("ActoresB WHERE CODAC='B2'",2,"Nombre");
-            break;
-        case 3:  c=lib.consultaDatos("ActoresB WHERE CODAC='B3'",2,"Nombre");
-            break;                    
+
+public  void respuestasAleatorias(String cod){
+    
+        int i ;
+        int valores;
+        String sValor="";
+     lib.Conectar("jdbc:mysql://10.0.0.254/jgarciaamor","jgarciaamor","jgarciaamor");
+     String correcta=lib.consultaDatos("Actores WHERE CODAC='"+cod+"'",2,"Nombre");
+     
+     String falsa1=lib.consultaDatos("ActoresB WHERE CODAC='B1'",2,"Nombre");
+     
+     String falsa2=lib.consultaDatos("ActoresB WHERE CODAC='B3'",2,"Nombre");
+       lib.desconectar();
+    do{    
+    for ( i = 0; i < 1; i++) {
+        
+        valores=(int)Math.floor(Math.random() * 3)+1;
+        
+    while(respuestas.contains(valores)){
+        
+      valores=(int)Math.floor(Math.random() * 3)+1;
+        
+    }    
+    respuestas.add(valores);
+     sValor=Integer.toString(valores);}
+    
+    if( a.equals(sValor)){
+         a=correcta;
+    }else if(b.equals(sValor)){
+        b=falsa1;
+        
+    }else{
+        c=falsa2;
+       
     }
     
+         
+    }while(i<3);
+    
+   
 }
+public  int aleatorios(){
+    int valor=0;
+        
+    for (int i = 0; i < 2; i++) {
+        
+        valor=(int)Math.floor(Math.random() * 13)+1;
+        
+    while(actoresFalsos.contains(valor)){
+        
+      valor=(int)Math.floor(Math.random() * 13)+1;
+        
+    }    
+    actoresFalsos.add(valor);
+        
+    }return valor;
+   }
 public void recuento(){
     Resultado r=new Resultado();
     Usuario u= new Usuario();
