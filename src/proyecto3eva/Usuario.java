@@ -37,6 +37,7 @@ public class Usuario extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel1.setText("Nombre Usuario");
 
         tUsuario.addActionListener(new java.awt.event.ActionListener() {
@@ -45,7 +46,7 @@ public class Usuario extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("continuar");
+        jButton1.setText("Comenzar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -62,7 +63,7 @@ public class Usuario extends javax.swing.JFrame {
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(tUsuario)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(154, Short.MAX_VALUE))
+                .addContainerGap(145, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -97,12 +98,13 @@ public class Usuario extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
        
        met.Conectar("jdbc:mysql://10.0.0.254/jgarciaamor","jgarciaamor","jgarciaamor");
-       //met.insertar("Usuarios","Nombre,Puntuacion","'"+tUsuario.getText()+"',0");
-       //met.desconectar();
+       met.insertar("Usuarios","Nombre,Puntuacion","'"+tUsuario.getText()+"',0");
+       met.desconectar();
        
        Preguntas obx = new Preguntas();
        obx.setVisible(true);
        obx.USUARIO=tUsuario.getText();
+       obx.pregPel();
        setVisible(false);
        
     }//GEN-LAST:event_jButton1ActionPerformed
