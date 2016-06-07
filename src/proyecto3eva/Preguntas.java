@@ -19,10 +19,9 @@ ArrayList actoresFalsos= new ArrayList();
     /**
      * Creates new form JFrame
      */
-    protected static int RES;
-    protected static int CONTADORA;
-    protected static int CONTADORB;
+    protected static int RES,CONTADORA,CONTADORB;
     protected  String USUARIO;
+    private static String A,B,C,CORRECTA,FALSA1,FALSA2;
     
     
     public Preguntas() {
@@ -93,10 +92,6 @@ ArrayList actoresFalsos= new ArrayList();
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(bsiguiente)
-                .addGap(58, 58, 58))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -110,19 +105,22 @@ ArrayList actoresFalsos= new ArrayList();
                             .addComponent(bA)
                             .addComponent(bB)
                             .addComponent(bC)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(96, 96, 96)
-                        .addComponent(lPregunta, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(tNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(tNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(189, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(50, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lPregunta, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bsiguiente))
+                .addGap(58, 58, 58))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(tNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(3, 3, 3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lPregunta, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
+                .addGap(32, 32, 32)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lRespuestaA)
                     .addComponent(bA))
@@ -154,20 +152,33 @@ ArrayList actoresFalsos= new ArrayList();
     }// </editor-fold>//GEN-END:initComponents
 
     private void bAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAActionPerformed
-        RES=1;
-        desarrollo();
+        
+        if(A.equals(CORRECTA)){
+            CONTADORA++;
+        }
+        else{
+            CONTADORB++;}
         bA.setEnabled(false);
     }//GEN-LAST:event_bAActionPerformed
 
     private void bBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBActionPerformed
-        RES=2;
-        desarrollo();
+        if(B.equals(CORRECTA)){
+            CONTADORA++;
+        }
+        else{
+            CONTADORB++;}
         bB.setEnabled(false);
     }//GEN-LAST:event_bBActionPerformed
 
     private void bCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCActionPerformed
-        RES=3;
-        desarrollo();
+       // RES=3;
+        
+       // desarrollo();
+        if(C.equals(CORRECTA)){
+            CONTADORA++;
+        }
+        else{
+            CONTADORB++;}
         bC.setEnabled(false);
     }//GEN-LAST:event_bCActionPerformed
 
@@ -176,7 +187,10 @@ ArrayList actoresFalsos= new ArrayList();
        do{
            pregPel();
            contPreguntas++;
-       }while(contPreguntas<10);
+           bC.setEnabled(true);
+            bB.setEnabled(true);
+            bA.setEnabled(true);
+       }while(contPreguntas<5);
                
         recuento();
     }//GEN-LAST:event_bsiguienteActionPerformed
@@ -231,48 +245,47 @@ ArrayList actoresFalsos= new ArrayList();
     // End of variables declaration//GEN-END:variables
 
 public void pregPel(){
-    String preg,codAc,correcta,falsa1,falsa2;
+    String preg,codAc;
     tNombre.setText(USUARIO);
     lib.Conectar("jdbc:mysql://10.0.0.254/jgarciaamor","jgarciaamor","jgarciaamor");
     int id=pregAleatorias();
      preg=lib.consultaDatos("Peliculas WHERE id="+id,2,"Titulo");
      codAc=lib.consultaDatos("Peliculas WHERE id="+id,2,"CODAC1");
-      
-     correcta=lib.consultaDatos("Actores WHERE CODAC='"+codAc+"'",2,"Nombre");
-     falsa1=lib.consultaDatos("ActoresB WHERE CODAC='B"+actoresAleatorios()+"'",2,"Nombre");
-     falsa2=lib.consultaDatos("ActoresB WHERE CODAC='B"+actoresAleatorios()+"'",2,"Nombre"); 
-      
+      System.out.println(codAc);
+     CORRECTA=lib.consultaDatos("Actores WHERE CODAC='"+codAc+"'",2,"Nombre");
+     FALSA1=lib.consultaDatos("ActoresB WHERE CODAC='B"+actoresAleatorios()+"'",2,"Nombre");
+     FALSA2=lib.consultaDatos("ActoresB WHERE CODAC='B"+actoresAleatorios()+"'",2,"Nombre"); 
+     
     lPregunta.setText("Que actor protagoniza "+preg);
-    respuestasAleatorias(correcta,falsa1,falsa2);
+    respuestasAleatorias(CORRECTA,FALSA1,FALSA2);
     
     lib.desconectar();
     actoresFalsos.clear();
 }
 public void respuestasAleatorias(String correcta,String falsa1, String falsa2){
-    String a="";
-    String b="";
-    String c="";
+    
     int posicion=(int)Math.floor(Math.random() * 3)+1;
     switch(posicion){
-        case 1: a=correcta;
-                b=falsa1;
-                c=falsa2;
+        case 1: A=correcta;
+                B=falsa1;
+                C=falsa2;
+                
                 break;
-        case 2: a=falsa1;
-                b=correcta;
-                 c=falsa2;
+        case 2: A=falsa1;
+                B=correcta;
+                C=falsa2;
             break;
-        case 3:  a=falsa2;
-                 b=falsa1;
-                 c=correcta;
+        case 3:  A=falsa2;
+                 B=falsa1;
+                 C=correcta;
             break;
     }
                 
-    lRespuestaA.setText("a)"+a);
+    lRespuestaA.setText("a)"+A);
     
-    lRespuestaB.setText("b)"+b);
+    lRespuestaB.setText("b)"+B);
     
-    lRespuestaC.setText("c)"+c);
+    lRespuestaC.setText("c)"+C);
 }
 public void desarrollo(){
     switch(RES){
