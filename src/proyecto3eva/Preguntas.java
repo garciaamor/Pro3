@@ -52,6 +52,9 @@ ArrayList actoresFalsos= new ArrayList();
         bC = new javax.swing.JButton();
         bsiguiente = new javax.swing.JButton();
         lNombre = new javax.swing.JLabel();
+        limagena = new javax.swing.JLabel();
+        limagenb = new javax.swing.JLabel();
+        limagenc = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -96,10 +99,6 @@ ArrayList actoresFalsos= new ArrayList();
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(450, Short.MAX_VALUE)
-                .addComponent(bsiguiente)
-                .addGap(58, 58, 58))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -118,30 +117,56 @@ ArrayList actoresFalsos= new ArrayList();
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(bA, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
                                     .addComponent(bB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(bC, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(bC, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(limagena)
+                                            .addComponent(limagenb)
+                                            .addComponent(limagenc))
+                                        .addGap(62, 62, 62))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                        .addComponent(bsiguiente)
+                                        .addGap(49, 49, 49)))))))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(lNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lPregunta, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lRespuestaA)
-                    .addComponent(bA, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lPregunta, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lRespuestaA)
+                            .addComponent(bA, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(138, 138, 138)
+                        .addComponent(limagena)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lRespuestaB)
-                    .addComponent(bB, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lRespuestaC)
-                    .addComponent(bC, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
-                .addComponent(bsiguiente)
-                .addContainerGap())
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lRespuestaB)
+                            .addComponent(bB, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(83, 83, 83)
+                        .addComponent(limagenb)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lRespuestaC)
+                            .addComponent(bC, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(limagenc)
+                        .addGap(76, 76, 76)
+                        .addComponent(bsiguiente)))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 610, 650));
@@ -153,10 +178,14 @@ ArrayList actoresFalsos= new ArrayList();
         
         if(a.equals(correcta)){
             contadora++;
+            limagena.setIcon(new javax.swing.ImageIcon(getClass().getResource("/is/tick.png")));
+            limagenc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/is/x.png")));
+            limagenb.setIcon(new javax.swing.ImageIcon(getClass().getResource("/is/x.png")));  
         }
         else{
+             limagena.setIcon(new javax.swing.ImageIcon(getClass().getResource("/is/x.png")));
             contadorb++;}
-       //sonido.stop();
+       
         bA.setEnabled(false);
         bB.setEnabled(false);
         bC.setEnabled(false);
@@ -165,10 +194,14 @@ ArrayList actoresFalsos= new ArrayList();
     private void bBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBActionPerformed
         if(b.equals(correcta)){
             contadora++;
+            limagenb.setIcon(new javax.swing.ImageIcon(getClass().getResource("/is/tick.png")));
+            limagena.setIcon(new javax.swing.ImageIcon(getClass().getResource("/is/x.png")));
+            limagenc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/is/x.png")));  
         }
         else{
+             limagenb.setIcon(new javax.swing.ImageIcon(getClass().getResource("/is/x.png")));
             contadorb++;}
-       // sonido.stop();
+       
         bA.setEnabled(false);
         bB.setEnabled(false);
         bC.setEnabled(false);
@@ -177,19 +210,25 @@ ArrayList actoresFalsos= new ArrayList();
     private void bCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCActionPerformed
        if(c.equals(correcta)){
             contadora++;
-        }
+            limagenc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/is/tick.png")));
+            limagena.setIcon(new javax.swing.ImageIcon(getClass().getResource("/is/x.png")));
+            limagenb.setIcon(new javax.swing.ImageIcon(getClass().getResource("/is/x.png")));       
+       }
         else{
-            contadorb++;}
-       // sonido.stop();
+            limagenc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/is/x.png")));
+             contadorb++;}
+       
         bA.setEnabled(false);
         bB.setEnabled(false);
         bC.setEnabled(false);
     }//GEN-LAST:event_bCActionPerformed
 
     private void bsiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bsiguienteActionPerformed
-       
-      
+         
             pregPel();
+            limagena.setIcon(null);
+            limagenb.setIcon(null);
+            limagenc.setIcon(null);
             bC.setEnabled(true);
             bB.setEnabled(true);
             bA.setEnabled(true);
@@ -211,6 +250,7 @@ ArrayList actoresFalsos= new ArrayList();
             }
         }
        if(contpreguntas==6){
+           sonido.stop();
            recuento();
           setVisible(false);}
        
@@ -263,6 +303,9 @@ ArrayList actoresFalsos= new ArrayList();
     private javax.swing.JLabel lRespuestaA;
     private javax.swing.JLabel lRespuestaB;
     private javax.swing.JLabel lRespuestaC;
+    private javax.swing.JLabel limagena;
+    private javax.swing.JLabel limagenb;
+    private javax.swing.JLabel limagenc;
     // End of variables declaration//GEN-END:variables
 
 public void pregPel(){
@@ -331,7 +374,7 @@ public void pregGladiator(){
      lPregunta.setText("¿A que pelicula pertenece esta banda sonora?");
      lRespuestaA.setText("Gladiator");
      a=correcta;
-     a=falsa1;
+     b=falsa1;
      c=falsa2;
      lRespuestaB.setText("El Retorno del Rey");
      lRespuestaC.setText("Rocky");
@@ -410,8 +453,8 @@ public void recuento(){
     Resultado r=new Resultado();
     r.setVisible(true);
       
-    r.aciertos.setText("Aciertos: "+Integer.toString(contadora));
-    r.fallos.setText("Fallos: "+Integer.toString(contadorb));
+    r.laciertos.setText(Integer.toString(contadora));
+    r.lfallos.setText(Integer.toString(contadorb));
     lib.Conectar("jdbc:mysql://10.0.0.254/jgarciaamor","jgarciaamor","jgarciaamor");
     String id=lib.consultaDatos("Usuarios WHERE Nombre='"+usuario+"'",2,"Id");
     lib.actualizar("Usuarios",id, "Puntuacion", Integer.toString(contadora));
