@@ -6,6 +6,7 @@
 
 package proyecto3eva;
 
+import java.applet.AudioClip;
 import java.util.ArrayList;
 import metodos.MetodosMySQL;
 /**
@@ -19,18 +20,17 @@ ArrayList actoresFalsos= new ArrayList();
     /**
      * Creates new form JFrame
      */
-    protected  int RES,CONTADORA,CONTADORB;
+    protected  int res,contadora,contadorb;
     protected  String usuario;
-    private  String A,B,C,CORRECTA,FALSA1,FALSA2;
+    private  String a,b,c,correcta,falsa1,falsa2;
     private int contpreguntas;
     
-    
+    AudioClip sonido;
     
     
     public Preguntas() {
         initComponents();
-        
-        
+      
     }
 
     /**
@@ -151,35 +151,36 @@ ArrayList actoresFalsos= new ArrayList();
 
     private void bAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAActionPerformed
         
-        if(A.equals(CORRECTA)){
-            CONTADORA++;
+        if(a.equals(correcta)){
+            contadora++;
         }
         else{
-            CONTADORB++;}
+            contadorb++;}
+       //sonido.stop();
         bA.setEnabled(false);
         bB.setEnabled(false);
         bC.setEnabled(false);
     }//GEN-LAST:event_bAActionPerformed
 
     private void bBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBActionPerformed
-        if(B.equals(CORRECTA)){
-            CONTADORA++;
+        if(b.equals(correcta)){
+            contadora++;
         }
         else{
-            CONTADORB++;}
-        
+            contadorb++;}
+       // sonido.stop();
         bA.setEnabled(false);
         bB.setEnabled(false);
         bC.setEnabled(false);
     }//GEN-LAST:event_bBActionPerformed
 
     private void bCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCActionPerformed
-       if(C.equals(CORRECTA)){
-            CONTADORA++;
+       if(c.equals(correcta)){
+            contadora++;
         }
         else{
-            CONTADORB++;}
-        
+            contadorb++;}
+       // sonido.stop();
         bA.setEnabled(false);
         bB.setEnabled(false);
         bC.setEnabled(false);
@@ -195,9 +196,24 @@ ArrayList actoresFalsos= new ArrayList();
             contpreguntas++;
                
        if(contpreguntas==5){
+            int posicion = (int) Math.floor(Math.random() * 4) + 1;
+            switch (posicion) {
+                case 1:
+                    pregAnillos();
+                    break;
+                case 2: pregStarWars();
+                    break;
+                case 3: pregRocky();
+                    break;
+                case 4: pregGladiator();
+                    break;
+
+            }
+        }
+       if(contpreguntas==6){
            recuento();
-           setVisible(false);}
-           
+          setVisible(false);}
+       
     }//GEN-LAST:event_bsiguienteActionPerformed
 
     /**
@@ -252,62 +268,113 @@ ArrayList actoresFalsos= new ArrayList();
 public void pregPel(){
     String preg,codAc;
     lNombre.setText(usuario);
-    //tNombre.setText(usuario);
+    
     lib.Conectar("jdbc:mysql://10.0.0.254/jgarciaamor","jgarciaamor","jgarciaamor");
-    
-    
-    
+       
     int id=pregAleatorias();
      preg=lib.consultaDatos("Peliculas WHERE id="+id,2,"Titulo");
      codAc=lib.consultaDatos("Peliculas WHERE id="+id,2,"CODAC1");
      
-     CORRECTA=lib.consultaDatos("Actores WHERE CODAC='"+codAc+"'",2,"Nombre");
-     FALSA1=lib.consultaDatos("ActoresB WHERE CODAC='B"+actoresAleatorios()+"'",2,"Nombre");
-     FALSA2=lib.consultaDatos("ActoresB WHERE CODAC='B"+actoresAleatorios()+"'",2,"Nombre"); 
+     correcta=lib.consultaDatos("Actores WHERE CODAC='"+codAc+"'",2,"Nombre");
+     falsa1=lib.consultaDatos("ActoresB WHERE CODAC='B"+actoresAleatorios()+"'",2,"Nombre");
+     falsa2=lib.consultaDatos("ActoresB WHERE CODAC='B"+actoresAleatorios()+"'",2,"Nombre"); 
      
     lPregunta.setText("Quien aparece en la pelicula "+preg);
-    respuestasAleatorias(CORRECTA,FALSA1,FALSA2);
+    respuestasAleatorias(correcta,falsa1,falsa2);
     
     lib.desconectar();
     actoresFalsos.clear();
 }
+public void pregStarWars(){
+     sonido=java.applet.Applet.newAudioClip(getClass().getResource("/is/Star Wars.wav"));
+     sonido.play();
+     lPregunta.setText("¿A que pelicula pertenece esta banda sonora?");
+     lRespuestaA.setText("Star Wars");
+     a=correcta;
+     lRespuestaB.setText("El Retorno del Rey");
+     lRespuestaC.setText("Rocky");
+    bA.setIcon(new javax.swing.ImageIcon(getClass().getResource("/is/La venganza de los sith.jpeg")));
+    bB.setIcon(new javax.swing.ImageIcon(getClass().getResource("/is/El Retorno del Rey.jpeg")));
+    bC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/is/Rocky.jpeg")));
+     }
+public void pregAnillos(){
+     sonido=java.applet.Applet.newAudioClip(getClass().getResource("/is/El Retorno del Rey.wav"));
+     sonido.play();
+     lPregunta.setText("¿A que pelicula pertenece esta banda sonora?");
+     lRespuestaA.setText("Star Wars");
+     lRespuestaB.setText("El Retorno del Rey");
+     b=correcta;
+     a=falsa1;
+     c=falsa2;
+     lRespuestaC.setText("Rocky");
+    bA.setIcon(new javax.swing.ImageIcon(getClass().getResource("/is/La venganza de los sith.jpeg")));
+    bB.setIcon(new javax.swing.ImageIcon(getClass().getResource("/is/El Retorno del Rey.jpeg")));
+    bC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/is/Rocky.jpeg")));
+     }
+public void pregRocky(){
+     sonido=java.applet.Applet.newAudioClip(getClass().getResource("/is/Rocky.wav"));
+     sonido.play();
+     lPregunta.setText("¿A que pelicula pertenece esta banda sonora?");
+     lRespuestaA.setText("Star Wars");
+     lRespuestaB.setText("El Retorno del Rey");
+     lRespuestaC.setText("Rocky");
+     c=correcta;
+     a=falsa1;
+     b=falsa2;
+    bA.setIcon(new javax.swing.ImageIcon(getClass().getResource("/is/La venganza de los sith.jpeg")));
+    bB.setIcon(new javax.swing.ImageIcon(getClass().getResource("/is/El Retorno del Rey.jpeg")));
+    bC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/is/Rocky.jpeg")));
+     }
+public void pregGladiator(){
+     sonido=java.applet.Applet.newAudioClip(getClass().getResource("/is/Gladiator.wav"));
+     sonido.play();
+     lPregunta.setText("¿A que pelicula pertenece esta banda sonora?");
+     lRespuestaA.setText("Gladiator");
+     a=correcta;
+     a=falsa1;
+     c=falsa2;
+     lRespuestaB.setText("El Retorno del Rey");
+     lRespuestaC.setText("Rocky");
+    bA.setIcon(new javax.swing.ImageIcon(getClass().getResource("/is/Gladiator.jpeg")));
+    bB.setIcon(new javax.swing.ImageIcon(getClass().getResource("/is/El Retorno del Rey.jpeg")));
+    bC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/is/Rocky.jpeg")));}
+
 public void respuestasAleatorias(String correcta,String falsa1, String falsa2){
     
     int posicion=(int)Math.floor(Math.random() * 3)+1;
     switch(posicion){
-        case 1: A=correcta;
-                B=falsa1;
-                C=falsa2;
+        case 1: a=correcta;
+                b=falsa1;
+                c=falsa2;
                 
                 break;
-        case 2: A=falsa1;
-                B=correcta;
-                C=falsa2;
+        case 2: a=falsa1;
+                b=correcta;
+                c=falsa2;
             break;
-        case 3:  A=falsa2;
-                 B=falsa1;
-                 C=correcta;
+        case 3:  a=falsa2;
+                 b=falsa1;
+                 c=correcta;
             break;
     }
-    
-    
-    lRespuestaA.setText("a)" + A);
+        
+    lRespuestaA.setText("a)" + a);
 
-    lRespuestaB.setText("b)" + B);
+    lRespuestaB.setText("b)" + b);
 
-    lRespuestaC.setText("c)" + C);
+    lRespuestaC.setText("c)" + c);
 
-    bA.setIcon(new javax.swing.ImageIcon(getClass().getResource("/is/" + A + ".jpeg")));
-    bB.setIcon(new javax.swing.ImageIcon(getClass().getResource("/is/" + B + ".jpeg")));
-    bC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/is/" + C + ".jpeg")));
+    bA.setIcon(new javax.swing.ImageIcon(getClass().getResource("/is/" + a + ".jpeg")));
+    bB.setIcon(new javax.swing.ImageIcon(getClass().getResource("/is/" + b + ".jpeg")));
+    bC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/is/" + c + ".jpeg")));
 }
 public void desarrollo(){
-    switch(RES){
-        case 1: CONTADORA++;
+    switch(res){
+        case 1: contadora++;
             break;
-        case 2: CONTADORB++;
+        case 2: contadorb++;
             break;
-        case 3: CONTADORB++;
+        case 3: contadorb++;
             break;
     }
 }
@@ -343,11 +410,11 @@ public void recuento(){
     Resultado r=new Resultado();
     r.setVisible(true);
       
-    r.aciertos.setText("Aciertos: "+Integer.toString(CONTADORA));
-    r.fallos.setText("Fallos: "+Integer.toString(CONTADORB));
+    r.aciertos.setText("Aciertos: "+Integer.toString(contadora));
+    r.fallos.setText("Fallos: "+Integer.toString(contadorb));
     lib.Conectar("jdbc:mysql://10.0.0.254/jgarciaamor","jgarciaamor","jgarciaamor");
     String id=lib.consultaDatos("Usuarios WHERE Nombre='"+usuario+"'",2,"Id");
-    lib.actualizar("Usuarios",id, "Puntuacion", Integer.toString(CONTADORA));
+    lib.actualizar("Usuarios",id, "Puntuacion", Integer.toString(contadora));
     lib.desconectar();
     
 }
