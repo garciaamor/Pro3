@@ -314,16 +314,16 @@ public  int actoresAleatorios(){
     }return valor;
    }
 public int pregAleatorias(){
-    int valor=0;
+    int valor;
                
         valor=(int)Math.floor(Math.random() * 13)+1;
         
     while(preguntas.contains(valor)){
         
-      valor=(int)Math.floor(Math.random() * 13)+1;
+      valor=(int)Math.floor(Math.random() * 13)+1;}
                
     preguntas.add(valor);
-}
+
     return valor;}
 public void recuento(){
     Resultado r=new Resultado();
