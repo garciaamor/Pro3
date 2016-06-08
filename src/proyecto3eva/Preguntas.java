@@ -19,10 +19,10 @@ ArrayList actoresFalsos= new ArrayList();
     /**
      * Creates new form JFrame
      */
-    protected static int RES,CONTADORA,CONTADORB;
-    protected  String USUARIO;
-    private static String A,B,C,CORRECTA,FALSA1,FALSA2;
-    
+    protected  int RES,CONTADORA,CONTADORB;
+    protected  String usuario;
+    private  String A,B,C,CORRECTA,FALSA1,FALSA2;
+    private int contpreguntas;
     
     public Preguntas() {
         initComponents();
@@ -171,10 +171,7 @@ ArrayList actoresFalsos= new ArrayList();
     }//GEN-LAST:event_bBActionPerformed
 
     private void bCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCActionPerformed
-       // RES=3;
-        
-       // desarrollo();
-        if(C.equals(CORRECTA)){
+       if(C.equals(CORRECTA)){
             CONTADORA++;
         }
         else{
@@ -183,16 +180,18 @@ ArrayList actoresFalsos= new ArrayList();
     }//GEN-LAST:event_bCActionPerformed
 
     private void bsiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bsiguienteActionPerformed
-       int  contPreguntas=0;
-       do{
-           pregPel();
-           contPreguntas++;
-           bC.setEnabled(true);
+       
+      
+            pregPel();
+            bC.setEnabled(true);
             bB.setEnabled(true);
             bA.setEnabled(true);
-       }while(contPreguntas<5);
+            contpreguntas++;
                
-        recuento();
+       if(contpreguntas==5){
+           recuento();
+           setVisible(false);}
+           
     }//GEN-LAST:event_bsiguienteActionPerformed
 
     /**
@@ -246,12 +245,13 @@ ArrayList actoresFalsos= new ArrayList();
 
 public void pregPel(){
     String preg,codAc;
-    tNombre.setText(USUARIO);
+    tNombre.setText(usuario);
     lib.Conectar("jdbc:mysql://10.0.0.254/jgarciaamor","jgarciaamor","jgarciaamor");
+    
     int id=pregAleatorias();
      preg=lib.consultaDatos("Peliculas WHERE id="+id,2,"Titulo");
      codAc=lib.consultaDatos("Peliculas WHERE id="+id,2,"CODAC1");
-      System.out.println(codAc);
+     
      CORRECTA=lib.consultaDatos("Actores WHERE CODAC='"+codAc+"'",2,"Nombre");
      FALSA1=lib.consultaDatos("ActoresB WHERE CODAC='B"+actoresAleatorios()+"'",2,"Nombre");
      FALSA2=lib.consultaDatos("ActoresB WHERE CODAC='B"+actoresAleatorios()+"'",2,"Nombre"); 
@@ -332,9 +332,7 @@ public void recuento(){
     r.aciertos.setText("Aciertos: "+Integer.toString(CONTADORA));
     r.fallos.setText("Fallos: "+Integer.toString(CONTADORB));
     lib.Conectar("jdbc:mysql://10.0.0.254/jgarciaamor","jgarciaamor","jgarciaamor");
-    String id=lib.consultaDatos("Usuarios WHERE Nombre='"+USUARIO+"'",2,"Id");
-    System.out.println("***"+id);
-    System.out.println(USUARIO);
+    String id=lib.consultaDatos("Usuarios WHERE Nombre='"+usuario+"'",2,"Id");
     lib.actualizar("Usuarios",id, "Puntuacion", Integer.toString(CONTADORA));
     lib.desconectar();
     

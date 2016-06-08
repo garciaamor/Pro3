@@ -103,7 +103,7 @@ public class Usuario extends javax.swing.JFrame {
        
        Preguntas obx = new Preguntas();
        obx.setVisible(true);
-       obx.USUARIO=tUsuario.getText();
+       obx.usuario=tUsuario.getText();
        obx.pregPel();
        setVisible(false);
        
