@@ -24,8 +24,12 @@ ArrayList actoresFalsos= new ArrayList();
     private  String A,B,C,CORRECTA,FALSA1,FALSA2;
     private int contpreguntas;
     
+    
+    
+    
     public Preguntas() {
         initComponents();
+        
         
     }
 
@@ -47,9 +51,10 @@ ArrayList actoresFalsos= new ArrayList();
         bB = new javax.swing.JButton();
         bC = new javax.swing.JButton();
         bsiguiente = new javax.swing.JButton();
-        tNombre = new javax.swing.JTextField();
+        lNombre = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lPregunta.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lPregunta.setText("jLabel");
@@ -60,21 +65,18 @@ ArrayList actoresFalsos= new ArrayList();
 
         lRespuestaC.setText("jLabel1");
 
-        bA.setText("A");
         bA.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bAActionPerformed(evt);
             }
         });
 
-        bB.setText("B");
         bB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bBActionPerformed(evt);
             }
         });
 
-        bC.setText("C");
         bC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bCActionPerformed(evt);
@@ -88,65 +90,61 @@ ArrayList actoresFalsos= new ArrayList();
             }
         });
 
+        lNombre.setText("jLabel1");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(450, Short.MAX_VALUE)
+                .addComponent(bsiguiente)
+                .addGap(58, 58, 58))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(lNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(62, 62, 62)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lRespuestaA, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
-                            .addComponent(lRespuestaB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lRespuestaC, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(bA)
-                            .addComponent(bB)
-                            .addComponent(bC)))
-                    .addComponent(tNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(189, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(50, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lPregunta, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bsiguiente))
-                .addGap(58, 58, 58))
+                            .addComponent(lPregunta, javax.swing.GroupLayout.PREFERRED_SIZE, 532, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(lRespuestaA, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
+                                    .addComponent(lRespuestaB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lRespuestaC, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(bA, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
+                                    .addComponent(bB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(bC, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(tNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lPregunta, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lRespuestaA)
-                    .addComponent(bA))
-                .addGap(26, 26, 26)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bA, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lRespuestaB)
-                    .addComponent(bB))
-                .addGap(29, 29, 29)
+                    .addComponent(bB, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lRespuestaC)
-                    .addComponent(bC))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                    .addComponent(bC, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                 .addComponent(bsiguiente)
                 .addContainerGap())
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 610, 650));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -159,6 +157,8 @@ ArrayList actoresFalsos= new ArrayList();
         else{
             CONTADORB++;}
         bA.setEnabled(false);
+        bB.setEnabled(false);
+        bC.setEnabled(false);
     }//GEN-LAST:event_bAActionPerformed
 
     private void bBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBActionPerformed
@@ -167,7 +167,10 @@ ArrayList actoresFalsos= new ArrayList();
         }
         else{
             CONTADORB++;}
+        
+        bA.setEnabled(false);
         bB.setEnabled(false);
+        bC.setEnabled(false);
     }//GEN-LAST:event_bBActionPerformed
 
     private void bCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCActionPerformed
@@ -176,6 +179,9 @@ ArrayList actoresFalsos= new ArrayList();
         }
         else{
             CONTADORB++;}
+        
+        bA.setEnabled(false);
+        bB.setEnabled(false);
         bC.setEnabled(false);
     }//GEN-LAST:event_bCActionPerformed
 
@@ -236,17 +242,20 @@ ArrayList actoresFalsos= new ArrayList();
     private javax.swing.JButton bC;
     private javax.swing.JButton bsiguiente;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lNombre;
     private javax.swing.JLabel lPregunta;
     private javax.swing.JLabel lRespuestaA;
     private javax.swing.JLabel lRespuestaB;
     private javax.swing.JLabel lRespuestaC;
-    private javax.swing.JTextField tNombre;
     // End of variables declaration//GEN-END:variables
 
 public void pregPel(){
     String preg,codAc;
-    tNombre.setText(usuario);
+    lNombre.setText(usuario);
+    //tNombre.setText(usuario);
     lib.Conectar("jdbc:mysql://10.0.0.254/jgarciaamor","jgarciaamor","jgarciaamor");
+    
+    
     
     int id=pregAleatorias();
      preg=lib.consultaDatos("Peliculas WHERE id="+id,2,"Titulo");
@@ -256,7 +265,7 @@ public void pregPel(){
      FALSA1=lib.consultaDatos("ActoresB WHERE CODAC='B"+actoresAleatorios()+"'",2,"Nombre");
      FALSA2=lib.consultaDatos("ActoresB WHERE CODAC='B"+actoresAleatorios()+"'",2,"Nombre"); 
      
-    lPregunta.setText("Que actor protagoniza "+preg);
+    lPregunta.setText("Quien aparece en la pelicula "+preg);
     respuestasAleatorias(CORRECTA,FALSA1,FALSA2);
     
     lib.desconectar();
@@ -280,12 +289,17 @@ public void respuestasAleatorias(String correcta,String falsa1, String falsa2){
                  C=correcta;
             break;
     }
-                
-    lRespuestaA.setText("a)"+A);
     
-    lRespuestaB.setText("b)"+B);
     
-    lRespuestaC.setText("c)"+C);
+    lRespuestaA.setText("a)" + A);
+
+    lRespuestaB.setText("b)" + B);
+
+    lRespuestaC.setText("c)" + C);
+
+    bA.setIcon(new javax.swing.ImageIcon(getClass().getResource("/is/" + A + ".jpeg")));
+    bB.setIcon(new javax.swing.ImageIcon(getClass().getResource("/is/" + B + ".jpeg")));
+    bC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/is/" + C + ".jpeg")));
 }
 public void desarrollo(){
     switch(RES){
